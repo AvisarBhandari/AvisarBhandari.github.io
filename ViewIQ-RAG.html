@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ReadVerse — Book Store · Project</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <nav>
+      <div class="wrap">
+        <a class="brand" href="index.html">~/portfolio</a>
+        <a class="back" href="index.html#projects">← back to projects</a>
+      </div>
+    </nav>
+
+    <div class="wrap">
+      <header class="page">
+        <div class="case-head">
+          <span class="repo"
+            >github.com/AvisarBhandari/<a
+              href="https://github.com/AvisarBhandari/ViewIQ"
+              target="_blank"
+              rel="noopener"
+              >ViewIQ</a
+            ></span
+          >
+          <h1>RAG Chatbot</h1>
+          <p class="summary">
+            ViewIQ ingests YouTube videos and lets you have a grounded
+            conversation about them. The AI has access to the full transcript of
+            each video plus its actual metadata views, likes, comments,
+            engagement rate, duration, upload date, and subscriber count so
+            answers are backed by real data, not hallucinations.
+            <br />
+            <br />
+            <b> Single-video mode: </b>
+
+            deep-dive into one video: content summary, hook breakdown,
+            engagement analysis, improvement suggestions.
+            <br />
+            <br />
+            <b> Comparison mode: </b>
+            load up to 4 videos side by side and ask the AI to compare hooks,
+            engagement rates, creator style, or anything else across them.
+          </p>
+        </div>
+
+        <div class="chips">
+          <span class="chip">Next.js</span>
+          <span class="chip">FastAPI</span>
+          <span class="chip">ChromaDB</span>
+          <span class="chip">NVIDIA Llama Nemotron</span>
+          <span class="chip">GPT-OSS 120B</span>
+          <span class="chip">Supadata</span>
+          <span class="chip">Vercel</span>
+          <span class="chip">Render</span>
+        </div>
+      </header>
+
+      <section style="padding: 0 0 56px; border-bottom: 1px solid var(--line)">
+        <h3 class="sub">// screenshots</h3>
+        <div class="gallery three">
+          <figure class="wide">
+            <img src="images\ViewIQ\chat.gif" alt="Chat gif" loading="lazy" />
+            <figcaption>Chat gif</figcaption>
+          </figure>
+          <figure>
+            <img src="images\ViewIQ\home.png" alt="homepage" loading="lazy" />
+            <figcaption>Homepage</figcaption>
+          </figure>
+          <figure>
+            <img src="images\ViewIQ\chat.jpg" alt="Chat Room" loading="lazy" />
+            <figcaption>Chat Room</figcaption>
+          </figure>
+        </div>
+
+        <h3 class="sub">// what it does</h3>
+        <ul class="feat">
+          <li>Analyzes YouTube videos and their performance.</li>
+          <li>Extracts transcripts and video metadata.</li>
+          <li>Provides AI-powered video analysis and Q&A.</li>
+          <li>Compares multiple videos and their engagement.</li>
+          <li>Uses RAG to provide context-aware answers.</li>
+        </ul>
+
+        <h3 class="sub">// architecture</h3>
+        <p>
+          Uses a <code>Next.js</code> frontend with a <code>FastAPI</code> backend. The backend handles
+          YouTube data, transcript processing, embeddings, ChromaDB vector
+          storage, RAG-based retrieval, and LLM responses, while the frontend
+          provides the user interface and real-time AI chat.
+        </p>
+
+        <h3 class="sub">// why three roles</h3>
+        <p>
+          This architecture separates video processing, data retrieval, and AI
+          generation into dedicated services, making it easier to analyze
+          videos, compare multiple sources, and provide accurate context-aware
+          AI responses.
+        </p>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px">
+          <div class="links">
+            <a
+              class="btn primary"
+              href="https://github.com/AvisarBhandari/ViewIQ"
+              target="_blank"
+              rel="noopener"
+              >View code →</a
+            >
+          </div>
+          <div class="links">
+            <a
+              class="btn primary"
+              href="https://rag-chatbot-six-zeta.vercel.app/"
+              target="_blank"
+              rel="noopener"
+              >View demo →</a
+            >
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <footer>
+      <div class="wrap">built &amp; deployed with GitHub Pages</div>
+    </footer>
+  </body>
+  <script src="gallery.js"></script>
+</html>
