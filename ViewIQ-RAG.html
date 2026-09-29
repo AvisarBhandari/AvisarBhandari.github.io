@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>ReadVerse — Book Store · Project</title>
+    <title>ViewIQ - RAG Chatbot · Project</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
@@ -25,7 +25,7 @@
               >ViewIQ</a
             ></span
           >
-          <h1>RAG Chatbot</h1>
+          <h1>ViewIQ - RAG Chatbot</h1>
           <p class="summary">
             ViewIQ ingests YouTube videos and lets you have a grounded
             conversation about them. The AI has access to the full transcript of
@@ -86,13 +86,14 @@
 
         <h3 class="sub">// architecture</h3>
         <p>
-          Uses a <code>Next.js</code> frontend with a <code>FastAPI</code> backend. The backend handles
-          YouTube data, transcript processing, embeddings, ChromaDB vector
-          storage, RAG-based retrieval, and LLM responses, while the frontend
-          provides the user interface and real-time AI chat.
+          Uses a <code>Next.js</code> frontend with a
+          <code>FastAPI</code> backend. The backend handles YouTube data,
+          transcript processing, embeddings, ChromaDB vector storage, RAG-based
+          retrieval, and LLM responses, while the frontend provides the user
+          interface and real-time AI chat.
         </p>
 
-        <h3 class="sub">// why three roles</h3>
+        <h3 class="sub">// Why this architecture?</h3>
         <p>
           This architecture separates video processing, data retrieval, and AI
           generation into dedicated services, making it easier to analyze
@@ -100,25 +101,31 @@
           AI responses.
         </p>
 
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px">
-          <div class="links">
-            <a
-              class="btn primary"
-              href="https://github.com/AvisarBhandari/ViewIQ"
-              target="_blank"
-              rel="noopener"
-              >View code →</a
-            >
-          </div>
-          <div class="links">
-            <a
-              class="btn primary"
-              href="https://rag-chatbot-six-zeta.vercel.app/"
-              target="_blank"
-              rel="noopener"
-              >View demo →</a
-            >
-          </div>
+        <div class="note">
+          <strong>Live demo available.</strong> The Frontend is deploy at
+          <b> vercel </b> and backend <b>Render</b> no local setup needed to try
+          it.
+          <br />
+          <code>
+            NOTE: The free Render tier spins down after inactivity the first
+            request after sleep can take 30–60 seconds.</code
+          >
+        </div>
+        <div class="links">
+          <a
+            class="btn primary"
+            href="https://rag-chatbot-six-zeta.vercel.app/"
+            target="_blank"
+            rel="noopener"
+            >Try the live demo →</a
+          >
+          <a
+            class="btn ghost"
+            href="https://github.com/AvisarBhandari/ViewIQ"
+            target="_blank"
+            rel="noopener"
+            >View code</a
+          >
         </div>
       </section>
     </div>

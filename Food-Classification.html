@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Nepali Food Classifier · Project</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <nav>
+      <div class="wrap">
+        <a class="brand" href="index.html">~/portfolio</a>
+        <a class="back" href="index.html#projects">← back to projects</a>
+      </div>
+    </nav>
+
+    <div class="wrap">
+      <header class="page">
+        <div class="case-head">
+          <span class="repo"
+            >github.com/AvisarBhandari/<a
+              href="https://github.com/AvisarBhandari/Nepali-Food-Classification"
+              target="_blank"
+              rel="noopener"
+              >Nepali-Food-Classification</a
+            ></span
+          >
+          <h1>Nepali food classifier</h1>
+          <p class="summary">
+            An end-to-end computer vision project that classifies traditional
+            Nepali dishes using transfer learning on ResNet18, compares two
+            augmentation strategies head-to-head, and ships predictions through
+            both a Streamlit app and a FastAPI endpoint.
+          </p>
+        </div>
+
+        <div class="chips">
+          <span class="chip">Python</span>
+          <span class="chip">PyTorch</span>
+          <span class="chip">ResNet18 (Transfer Learning)</span>
+          <span class="chip">Streamlit</span>
+          <span class="chip">FastAPI</span>
+          <span class="chip">Docker</span>
+        </div>
+      </header>
+
+      <section style="padding: 0 0 56px; border-bottom: 1px solid var(--line)">
+        <h3 class="sub">// what it does</h3>
+        <p>
+          Given a photo, the model classifies it into one of seven Nepali dishes
+          momo, dal bhat, sel roti, chowmein, thukpa, chatamari, and yomari
+          after resizing to 224×224 and running it through a fine-tuned
+          ResNet18. Predictions are served two ways: a Streamlit web app for
+          quick manual testing, and a FastAPI
+          <code>POST /predict</code> endpoint for programmatic use, both
+          containerized with Docker.
+        </p>
+
+        <h3 class="sub">// results</h3>
+        <div class="gallery two">
+          <figure class="wide">
+            <img
+              src="https://github.com/AvisarBhandari/Nepali-Food-Classification/raw/2e78081c67f514886fcce4aca8451a362deafd64/model/Accuracy.png"
+              alt="Training and validation accuracy curves for Model 0 vs Model 1"
+              loading="lazy"
+            />
+            <figcaption>Accuracy — basic vs strong augmentation</figcaption>
+          </figure>
+          <figure class="wide">
+            <img
+              src="https://github.com/AvisarBhandari/Nepali-Food-Classification/raw/2e78081c67f514886fcce4aca8451a362deafd64/model/Loss.png"
+              alt="Training and validation loss curves for Model 0 vs Model 1"
+              loading="lazy"
+            />
+            <figcaption>Loss — basic vs strong augmentation</figcaption>
+          </figure>
+          <figure>
+            <img
+              src="https://github.com/AvisarBhandari/Nepali-Food-Classification/raw/2e78081c67f514886fcce4aca8451a362deafd64/model/model_0.png"
+              alt="Confusion matrix for Model 0, basic augmentation"
+              loading="lazy"
+            />
+            <figcaption>
+              Confusion matrix (Model 0 - basic augmentation)
+            </figcaption>
+          </figure>
+          <figure>
+            <img
+              src="https://github.com/AvisarBhandari/Nepali-Food-Classification/raw/2e78081c67f514886fcce4aca8451a362deafd64/model/model_1.png"
+              alt="Confusion matrix for Model 1, strong augmentation"
+              loading="lazy"
+            />
+            <figcaption>
+              Confusion matrix (Model 1 -strong augmentation)
+            </figcaption>
+          </figure>
+        </div>
+
+        <h3 class="sub">// two models, one architecture</h3>
+        <p>
+          Both models share the same ResNet18 backbone with a frozen feature
+          extractor and a custom classifier head the only difference is how the
+          training data was preprocessed, to isolate exactly how much
+          augmentation helps.
+        </p>
+        <ul class="feat">
+          <li>
+            <strong>Model 0 — basic augmentation:</strong> just resize and
+            tensor conversion. Preserves the original data distribution and
+            converges faster, but is more prone to overfitting on a small
+            dataset.
+          </li>
+          <li>
+            <strong>Model 1 — strong augmentation:</strong> random resized crop,
+            horizontal flip, rotation, and color jitter layered on top.
+            Converges a little slower but generalizes better to real-world
+            variation in lighting, angle, and framing.
+          </li>
+        </ul>
+
+        <h3 class="sub">// challenges</h3>
+        <p>
+          The dataset was small and had class imbalance across the seven dish
+          categories, which pushed the baseline model toward overfitting and
+          made it generalize poorly to new images. Transfer learning from a
+          pretrained ResNet18, fine-tuning, and the strong-augmentation pipeline
+          above were the main levers used to address that.
+        </p>
+
+        <h3 class="sub">// training setup</h3>
+        <ul class="feat">
+          <li><strong>Loss:</strong> CrossEntropyLoss</li>
+          <li><strong>Optimizer:</strong> Adam, learning rate 1e-3</li>
+          <li><strong>Schedule:</strong> 15 epochs, batch size 32</li>
+          <li>
+            <strong>Inference:</strong> resize to 224×224 → normalize → forward
+            pass through ResNet18 → softmax → argmax for the final class
+          </li>
+        </ul>
+
+        <div class="note">
+          <strong>Live demo available.</strong> The Streamlit app is deployed
+          and takes an uploaded image straight to a prediction no local setup
+          needed to try it.
+        </div>
+
+        <div class="links">
+          <a
+            class="btn primary"
+            href="https://avisarbhandari-nepali-food-classific-srcstreamlit-appapp-fdmlas.streamlit.app/"
+            target="_blank"
+            rel="noopener"
+            >Try the live demo →</a
+          >
+          <a
+            class="btn ghost"
+            href="https://github.com/AvisarBhandari/Nepali-Food-Classification"
+            target="_blank"
+            rel="noopener"
+            >View code</a
+          >
+        </div>
+      </section>
+    </div>
+
+    <footer>
+      <div class="wrap">built &amp; deployed with GitHub Pages</div>
+    </footer>
+
+    <script src="gallery.js"></script>
+  </body>
+</html>

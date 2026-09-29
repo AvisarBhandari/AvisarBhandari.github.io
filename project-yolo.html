@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Nepali Food Detection — YOLOv8 · Project</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <nav>
+      <div class="wrap">
+        <a class="brand" href="index.html">~/portfolio</a>
+        <a class="back" href="index.html#projects">← back to projects</a>
+      </div>
+    </nav>
+
+    <div class="wrap">
+      <header class="page">
+        <div class="case-head">
+          <span class="repo"
+            >github.com/AvisarBhandari/<a
+              href="https://github.com/AvisarBhandari/nepali-food-detection-yolo"
+              target="_blank"
+              rel="noopener"
+              >nepali-food-detection-yolo</a
+            ></span
+          >
+          <h1>Nepali food detection with YOLOv8</h1>
+          <p class="summary">
+            A real-time object detection model fine-tuned to recognize
+            traditional Nepali dishes Momo, Chatpate, Dal Bhat, Sel Roti,
+            Samosa, and more from images and video.
+          </p>
+        </div>
+
+        <div class="chips">
+          <span class="chip">Python</span>
+          <span class="chip">Ultralytics YOLOv8</span>
+          <span class="chip">OpenCV</span>
+          <span class="chip">Transfer Learning</span>
+        </div>
+      </header>
+
+      <section style="padding: 0 0 56px; border-bottom: 1px solid var(--line)">
+        <h3 class="sub">// detections</h3>
+
+        <div class="gallery three">
+          <figure class="wide">
+            <img
+              src="images/yolo/results.png"
+              alt="Training results plot — loss and mAP curves over 27 epochs"
+              loading="lazy"
+            />
+            <figcaption>
+              Training curves — loss &amp; mAP over 27 epochs
+            </figcaption>
+          </figure>
+          <figure>
+            <img src="images/yolo/val_pred.jpg" alt="val_pred" loading="lazy" />
+            <figcaption>val_pred</figcaption>
+          </figure>
+
+          <figure>
+            <img
+              src="images/yolo/momo.png"
+              alt="YOLOv8 detecting Momo with bounding box and confidence score"
+              loading="lazy"
+            />
+            <figcaption>Momo — detected</figcaption>
+          </figure>
+          <figure>
+            <img
+              src="images/yolo/chatpate.png"
+              alt="YOLOv8 detecting Chatpate with bounding box and confidence score"
+              loading="lazy"
+            />
+            <figcaption>Chatpate — detected</figcaption>
+          </figure>
+          <figure>
+            <img
+              src="images/yolo/confusion_matrix_normalized.png"
+              alt="confusion_matrix_normalized"
+              loading="lazy"
+            />
+            <figcaption>confusion_matrix_normalized</figcaption>
+          </figure>
+          <figure>
+            <img
+              src="images/yolo/labels.jpg"
+              alt="images labels"
+              loading="lazy"
+            />
+            <figcaption>images labels</figcaption>
+          </figure>
+        </div>
+
+        <h3 class="sub">// approach</h3>
+        <p>
+          Rather than training from scratch, both models started from
+          ImageNet-pretrained YOLOv8 weights and were fine-tuned via transfer
+          learning on a custom, YOLO-format-annotated dataset of Nepali food
+          images. Two backbone sizes were trained and benchmarked head-to-head
+          to explore the speed/accuracy trade-off:
+        </p>
+
+        <h3 class="sub">// results — 27 epochs each</h3>
+        <div class="scrollx">
+          <table class="metrics">
+            <thead>
+              <tr>
+                <th>Model</th>
+                <th>Params</th>
+                <th>Best epoch</th>
+                <th>mAP@50</th>
+                <th>mAP@50-95</th>
+                <th>Recall</th>
+                <th>Train time</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>YOLOv8n (nano)</td>
+                <td>~3.2M</td>
+                <td>15</td>
+                <td>29.4%</td>
+                <td>20.1%</td>
+                <td>60.1%</td>
+                <td>~4.5 min</td>
+              </tr>
+              <tr class="best">
+                <td>YOLOv8s (small)</td>
+                <td>~11.2M</td>
+                <td>17</td>
+                <td>32.7%</td>
+                <td>23.8%</td>
+                <td>65.3%</td>
+                <td>~8.4 min</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          YOLOv8s came out ahead on every accuracy metric — a +3.3pp gain in
+          mAP@50 over the nano variant — at roughly double the training time.
+          That trade-off maps directly onto the two real deployment targets:
+          YOLOv8n for edge or mobile inference, YOLOv8s where compute is less
+          constrained and accuracy matters more.
+        </p>
+
+        <h3 class="sub">// pipeline</h3>
+        <ul class="feat">
+          <li>
+            <strong>Data:</strong> a Kaggle-sourced Nepali food image dataset,
+            annotated in YOLO's normalized bounding-box label format and split
+            into train/val/test.
+          </li>
+          <li>
+            <strong>Training:</strong> both variants trained for 27 epochs via
+            the Ultralytics CLI and Python API, with per-epoch loss and mAP
+            logged to CSV.
+          </li>
+          <li>
+            <strong>Inference:</strong> the best checkpoint from each run
+            detects and labels food items in new images with a confidence score,
+            using a configurable confidence threshold.
+          </li>
+        </ul>
+
+        <div class="note">
+          <strong>No hosted demo.</strong> This runs as a local CLI / Python
+          pipeline rather than a web app — the README covers training,
+          inference, and evaluation commands, and a CUDA GPU is recommended for
+          training (CPU works fine for inference).
+        </div>
+
+        <div class="links">
+          <a
+            class="btn primary"
+            href="https://github.com/AvisarBhandari/nepali-food-detection-yolo"
+            target="_blank"
+            rel="noopener"
+            >View code →</a
+          >
+        </div>
+      </section>
+    </div>
+
+    <footer>
+      <div class="wrap">built &amp; deployed with GitHub Pages</div>
+    </footer>
+  </body>
+  <script src="gallery.js"></script>
+</html>

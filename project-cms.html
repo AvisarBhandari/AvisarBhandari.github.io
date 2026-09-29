@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Academy Keeper — College Management System · Project</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <nav>
+      <div class="wrap">
+        <a class="brand" href="index.html">~/portfolio</a>
+        <a class="back" href="index.html#projects">← back to projects</a>
+      </div>
+    </nav>
+
+    <div class="wrap">
+      <header class="page">
+        <div class="case-head">
+          <span class="repo"
+            >github.com/AvisarBhandari/<a
+              href="https://github.com/AvisarBhandari/CMS"
+              target="_blank"
+              rel="noopener"
+              >CMS</a
+            ></span
+          >
+          <h1>Academy Keeper — College Management System</h1>
+          <p class="summary">
+            A role-based college management system that centralizes day-to-day
+            academic operations enrollment, attendance, finance, and exams into
+            one platform with dedicated portals for administrators, faculty, and
+            students.
+          </p>
+        </div>
+
+        <div class="chips">
+          <span class="chip">PHP</span>
+          <span class="chip">MySQL</span>
+          <span class="chip">HTML5 / CSS3</span>
+          <span class="chip">Bootstrap 5</span>
+          <span class="chip">JavaScript / jQuery / AJAX</span>
+        </div>
+      </header>
+
+      <section style="padding: 0 0 56px; border-bottom: 1px solid var(--line)">
+        <h3 class="sub">// screenshots</h3>
+        <div class="gallery">
+          <figure>
+            <img
+              src="images/cms/landing.jpeg"
+              alt="Academy Keeper public landing page"
+              loading="lazy"
+            />
+            <figcaption>Public landing page</figcaption>
+          </figure>
+          <figure>
+            <img
+              src="images/cms/login.jpeg"
+              alt="Login page with role tabs for admin, faculty and student"
+              loading="lazy"
+            />
+            <figcaption>Login — role-based tabs</figcaption>
+          </figure>
+          <figure>
+            <img
+              src="images/cms/admin-dashboard.jpeg"
+              alt="Admin dashboard with stats and earnings chart"
+              loading="lazy"
+            />
+            <figcaption>Admin dashboard</figcaption>
+          </figure>
+          <figure>
+            <img
+              src="images/cms/faculty-management.jpeg"
+              alt="Faculty management panel"
+              loading="lazy"
+            />
+            <figcaption>Faculty management</figcaption>
+          </figure>
+        </div>
+
+        <h3 class="sub">// what it does</h3>
+        <p>
+          A public landing page introduces the platform to prospective students,
+          then a unified login screen routes each user into one of three portals
+          based on role. From there, the system covers the full academic
+          workflow: enrollment, attendance, course assignment, exam scheduling
+          and results, and institutional finance each scoped to what that role
+          should actually see and edit.
+        </p>
+
+        <h3 class="sub">// features by role</h3>
+        <ul class="feat">
+          <li>
+            <strong>Administrator:</strong> full access live stats on students,
+            faculty, attendance and courses; an earnings-vs-expenditure chart
+            with a 12-month breakdown; event and holiday calendar management;
+            and the ability to add faculty or other admin accounts.
+          </li>
+          <li>
+            <strong>Faculty:</strong> partial access a roster of faculty with
+            department, position and status, attendance marking and edits, and
+            charts for staff status and monthly absences.
+          </li>
+          <li>
+            <strong>Student:</strong> read access grades, attendance, enrolled
+            courses and schedules.
+          </li>
+        </ul>
+
+        <h3 class="sub">// architecture</h3>
+        <p>
+          A classic server-rendered PHP application: <code>index.php</code> is
+          the public entry point, <code>front/</code> holds login and sign-up
+          pages, and <code>Dashboard/</code> splits into <code>admin/</code>,
+          <code>faculty/</code> and <code>student/</code> subfolders — one set
+          of views and logic per role. Styling lives in
+          <code>css/</code> (Bootstrap 5 plus custom styles), interactivity in
+          <code>js/</code> via jQuery and AJAX, and a MySQL database backs
+          everything from user accounts to attendance records.
+        </p>
+
+        <h3 class="sub">// why role-based access</h3>
+        <p>
+          The core design problem was the same one as a permissions system in
+          any real institution: one shared dataset (students, courses,
+          attendance, finance), three very different views into it, and no role
+          able to see or touch more than it should — enforced at both the
+          routing and query level rather than just hidden in the UI.
+        </p>
+
+        <div class="note">
+          <strong>No hosted demo.</strong> This runs on a local PHP + MySQL
+          stack (via XAMPP or WAMP) rather than being deployed — clone the repo,
+          import the database, and set your DB credentials as described in the
+          README.
+        </div>
+
+        <div class="links">
+          <a
+            class="btn primary"
+            href="https://github.com/AvisarBhandari/CMS"
+            target="_blank"
+            rel="noopener"
+            >View code →</a
+          >
+        </div>
+      </section>
+    </div>
+
+    <footer>
+      <div class="wrap">built &amp; deployed with GitHub Pages</div>
+    </footer>
+
+    <script src="gallery.js"></script>
+  </body>
+</html>
